@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% import 'core/default_templates/form_search.html.twig' as form_search %}
+{% import 'core/default_templates/data_table_macro.html.twig' as data_table %}
+
+{% block body %}
+    {# Search form с полета за търсене #}
+    {{ form_search.form_search(form, ["name", "product", "warehouse", "startDateFrom", "startDateTo", "endDateFrom", "endDateTo"]) }}
+
+    {# Data table с конфигурация #}
+    {{ data_table.table(rows, {
+        "newLink": data_table.new_btn('production_create'),
+        "cols" : {
+            "tableAction": {
+                "label": "core.module.actionTitle",
+                "edit": path('production_edit', {"id": -1}),
+            },
+            "name": {
+                "label": "production.name",
+            },
+            "description": {
+                "label": "production.description",
+            },
+            "product.name": {
+                "label": "production.product",
+            },
+            "warehouse.name": {
+                "label": "production.warehouse",
+            },
+            "quantity": {
+                "label": "production.quantity",
+                "type": "currency",
+            },
+            "startDate": {
+                "label": "production.startDate",
+                "type": "date",
+            },
+            "endDate": {
+                "label": "production.endDate",
+                "type": "date",
+            },
+            "createdAt": {
+                "label": "production.created_at",
+                "type": "datetime",
+            },
+        }
+    }) }}
+{% endblock %} 

@@ -1,0 +1,22 @@
+{% import 'core/default_templates/data_table_macro.html.twig' as data_table %}
+
+{{ data_table.table(rows, {
+    "newLink": data_table.new_btn('production_material_create', {"productionId": app.request.get('productionId')}),
+    "cols" : {
+        "tableAction": {
+            "label": "core.module.actionTitle",
+            "edit": path('production_material_edit', {"id": -1, "productionId": app.request.get('productionId')}),
+        },
+        "material.name": {
+            "label": "production.material",
+        },
+        "quantity": {
+            "label": "production.quantity",
+            "type": "number",
+        },
+        "createdAt": {
+            "label": "production.created_at",
+            "type": "datetime",
+        },
+    }
+}) }} 
